@@ -7,7 +7,3 @@ def get_mask_card_number(card_num: int) -> str:
 def get_mask_account(account_num: int) -> str:
     """Принимает номер счета и возвращает две звездочки и последние четыре цифры"""
     return "**" + str(account_num)[-4:]
-
-
-print(get_mask_card_number(6666666666666666))
-print(get_mask_account(6666666666666666666666666666666666))
