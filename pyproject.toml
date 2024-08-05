@@ -22,7 +22,6 @@ check_untyped_defs = true
 strict = true
 warn_unreachable = true
 exclude = 'venv'
-exclude = 'state'
 
 [tool.black]
 line-length = 119
