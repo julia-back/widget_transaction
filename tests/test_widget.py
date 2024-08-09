@@ -17,4 +17,4 @@ def test_get_date():
 
 def test_get_date_none():
     with pytest.raises(ValueError):
-        assert widget.get_date("")
+        widget.get_date("")

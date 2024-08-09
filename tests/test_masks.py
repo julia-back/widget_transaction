@@ -13,12 +13,12 @@ def test_get_mask_card_number(numbers_card):
 
 def test_get_mask_card_number_is_no_digit():
     with pytest.raises(TypeError):
-        assert masks.get_mask_card_number("ogiuog")
+        masks.get_mask_card_number("ogiuog")
 
 
 def test_get_mask_card_small():
     with pytest.raises(ValueError):
-        assert masks.get_mask_card_number(76)
+        masks.get_mask_card_number(76)
 
 
 @pytest.mark.parametrize("card_num, expected", [(7964974869760787970979808758465495786979, "7964 97** **** 6979"),
@@ -36,4 +36,4 @@ def test_get_mask_account(account_num, expected):
 
 def test_get_mask_account_error():
     with pytest.raises(ValueError):
-        assert masks.get_mask_account(76)
+        masks.get_mask_account(76)
