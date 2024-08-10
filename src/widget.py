@@ -33,4 +33,8 @@ def mask_account_card(kind_and_numbers: str) -> str:
 
 def get_date(complication_data: str) -> str:
     """Функция преобразует кашу из символов в нормальную дату 'дд.мм.гггг'"""
-    return f"{complication_data[8:10]}.{complication_data[5:7]}.{complication_data[:4]}"
+    if len(complication_data) > 0:
+        date = f"{complication_data[8:10]}.{complication_data[5:7]}.{complication_data[:4]}"
+        return date
+    else:
+        raise ValueError
