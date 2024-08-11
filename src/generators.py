@@ -13,3 +13,11 @@ def transaction_descriptions(transactions):
         yield transaction["description"]
 
 
+def card_number_generator(start, stop):
+    """
+    Выдает номера банковских карт в формате XXXX XXXX XXXX XXXX, где X — цифра номера карты.
+    Принимает начальное и конечное значения для генерации диапазона номеров.
+"""
+    for num in range(start, stop + 1):
+        nums = "0000000000000000" + str(num)
+        yield nums[-16:-12] + " " + nums[-12:-8] + " " + nums[-8:-4] + " " + nums[-4:]
