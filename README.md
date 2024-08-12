@@ -9,6 +9,11 @@
 ## Описание
 Виджет для банковского приложения, который отображает
 несколько последних успешных банковских операций клиента.
+Проект содержит модули:
++ masks.py
++ processing.py
++ widget.py
++ generators.py
 
 ## Пример работы
 ![пример](https://my.sky.pro/5987ea2b7acbe5e5379157f8c4f0fb7f.svg)
@@ -25,6 +30,7 @@ print("Hello, World!")
 **test_masks.py** для функционального модуля **masks.py**
 **test_processing.py** для функционального модуля **processing.py**
 **test_widget.py** для функционального модуля **widget.py**
+**test_generators** для функционального модуля **generators.py**
 
 Вы можете выполнить проверку, запустив фреймворк pytest и запустив инструмент
 Cove coverage с помощью команд:
