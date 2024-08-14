@@ -19,24 +19,24 @@ def log(filename=None):
             except Exception as error_info:
                 time_stop = time()
                 if filename is None:
-                    print(f"Function {func.__name__} started in {time_start}\n"
-                          f"Function {func.__name__} finished in {time_stop} by error:\n{Exception}: {error_info}\n"
+                    print(f"Function {func.__name__} started\n"
+                          f"Function {func.__name__} finished by error:\n{Exception}: {error_info}\n"
                           f"Parameters - args: {args}, kwargs: {kwargs}\n")
                 else:
                     with open(filename, "a", encoding="utf-8") as file:
-                        file.write(f"Function {func.__name__} started in {time_start}\n"
-                                   f"Function {func.__name__} finished in {time_stop} by error:\n{Exception}:{error_info}\n"
+                        file.write(f"Function {func.__name__} started\n"
+                                   f"Function {func.__name__} finished by error:\n{Exception}:{error_info}\n"
                                    f"Parameters - args: {args}, kwargs: {kwargs}\n\n")
             else:
                 time_stop = time()
                 if filename is None:
-                    print(f"Function {func.__name__} started in {time_start}\n"
-                          f"Function {func.__name__} finished in {time_stop}\n"
+                    print(f"Function {func.__name__} started\n"
+                          f"Function {func.__name__} finished\n"
                           f"Result: {result}\n")
                 else:
                     with open(filename, "a", encoding="utf-8") as file:
-                        file.write(f"Function {func.__name__} started in {time_start}\n"
-                                   f"Function {func.__name__} finished in {time_stop}\n"
+                        file.write(f"Function {func.__name__} started\n"
+                                   f"Function {func.__name__} finished\n"
                                    f"Result: {result}\n\n")
                 return result
         return inner
