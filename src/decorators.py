@@ -3,6 +3,13 @@ from time import time
 
 
 def log(filename=None):
+    """
+    Декоратор для логирования вызова функции.
+    Принимает опциональный аргумент - файл для записи логов. По умолчанию выводит логи в консоль.
+    Выводит время начала работы функции, время ококнчания работы функции,
+    в случае успеха выводит результат выполнения функции,
+    в случае ошибки выводит тип и описание ошибки, а также входные данные функции.
+    """
     def wrapper(func):
         @wraps(func)
         def inner(*args, **kwargs):
@@ -13,12 +20,12 @@ def log(filename=None):
                 time_stop = time()
                 if filename is None:
                     print(f"Function {func.__name__} started in {time_start}\n"
-                          f"Function {func.__name__} finished in {time_stop} by error:\n{error_info}\n"
+                          f"Function {func.__name__} finished in {time_stop} by error:\n{Exception}: {error_info}\n"
                           f"Parameters - args: {args}, kwargs: {kwargs}\n")
                 else:
                     with open(filename, "a", encoding="utf-8") as file:
                         file.write(f"Function {func.__name__} started in {time_start}\n"
-                                   f"Function {func.__name__} finished in {time_stop} by error:\n{error_info}\n"
+                                   f"Function {func.__name__} finished in {time_stop} by error:\n{Exception}:{error_info}\n"
                                    f"Parameters - args: {args}, kwargs: {kwargs}\n\n")
             else:
                 time_stop = time()
