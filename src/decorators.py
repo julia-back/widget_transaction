@@ -17,12 +17,12 @@ def log(filename=None):
             except Exception as error_info:
                 if filename is None:
                     print(f"Function {func.__name__} started\n"
-                          f"Function {func.__name__} finished by error:\n{Exception}: {error_info}\n"
+                          f"Function {func.__name__} finished by error:\n{type(error_info)}: {error_info}\n"
                           f"Parameters - args: {args}, kwargs: {kwargs}\n")
                 else:
                     with open(filename, "a", encoding="utf-8") as file:
                         file.write(f"Function {func.__name__} started\n"
-                                   f"Function {func.__name__} finished by error:\n{Exception}: {error_info}\n"
+                                   f"Function {func.__name__} finished by error:\n{type(error_info)}: {error_info}\n"
                                    f"Parameters - args: {args}, kwargs: {kwargs}\n\n")
             else:
                 if filename is None:

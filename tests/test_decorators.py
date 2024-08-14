@@ -32,7 +32,7 @@ def test_log_file_error(filename="logs.txt"):
     with open(filename, "r", encoding="utf-8") as file:
         last_lines = file.readlines()[-5:]
         assert last_lines == ["Function func_and_file started\n", "Function func_and_file finished by error:\n",
-                              "<class 'Exception'>: division by zero\n",
+                              "<class 'ZeroDivisionError'>: division by zero\n",
                               "Parameters - args: (2, 0), kwargs: {}\n", "\n"]
 
 
@@ -40,4 +40,4 @@ def test_log_error_2(capsys):
     func_no_file(2, 0)
     captured = capsys.readouterr()
     assert captured.out == ("Function func_no_file started\nFunction func_no_file finished by error:\n"
-                            "<class 'Exception'>: division by zero\nParameters - args: (2, 0), kwargs: {}\n\n")
+                            "<class 'ZeroDivisionError'>: division by zero\nParameters - args: (2, 0), kwargs: {}\n\n")
