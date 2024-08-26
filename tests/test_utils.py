@@ -1,6 +1,6 @@
 import json
 import os
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 
 from main import PATH
 from src.utils import get_read_json_file
