@@ -1,5 +1,6 @@
-from src.external_api import get_conversion_to_rubles
 from unittest.mock import patch
+
+from src.external_api import get_conversion_to_rubles
 
 
 def test_conversion_to_rubles_rub():
