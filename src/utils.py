@@ -1,4 +1,5 @@
 import json
+import logging
 
 
 def get_read_json_file(json_file: str) -> list[dict[str, str]]:
