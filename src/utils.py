@@ -1,8 +1,8 @@
 import json
-import os
 import logging
-from main import PATH
+import os
 
+from main import PATH
 
 logging.basicConfig(filemode="w")
 logger = logging.getLogger("utils.py")
@@ -27,7 +27,7 @@ def get_read_json_file(json_file: str) -> list[dict[str, str]]:
         logging.error(f"{ex}: file not found at this path")
         return []
     except json.JSONDecodeError as ex:
-        logging.error("Error decoding file")
+        logging.error(f"{ex}: error decoding file")
         return []
     else:
         logging.info(f"Open file {json_file}")
