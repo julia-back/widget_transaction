@@ -18,6 +18,7 @@
 + `decorators.py` с декораторами
 + `utils.py` для чтения json-файла
 + `external_api.py` для конвертации суммы транзакции в рубли по актуальному курсу 
++ `read_transactions.py` для чтения файлов в CSV и Excel форматах
 
 Для отслеживания работы функций реализованно логирование,
 подробнее в разделе **Логирование**
@@ -59,6 +60,7 @@ print("Hello, World!")
 - **test_decorators.py** для функционального модуля **decorators.py**
 - **test_utils.py** для функционального модуля **utils.py**
 - **test_external_api.py** для функционального модуля **external_api.py**
+- **test_read_transactions.py** для функционального модуля **read_transactions.py**
 
 Вы можете выполнить проверку, запустив фреймворк pytest и запустив инструмент
 Cove coverage с помощью команд:
