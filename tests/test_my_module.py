@@ -1,5 +1,5 @@
 from src import my_module
-from pytest import fixture, mark
+from pytest import fixture
 
 
 @fixture()
