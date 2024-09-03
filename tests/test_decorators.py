@@ -17,8 +17,12 @@ def test_log_file(filename="logs.txt"):
     func_and_file(2, 2)
     with open(filename, "r", encoding="utf-8") as file:
         last_lines = file.readlines()[-4:]
-        assert last_lines == ["Function func_and_file started\n", "Function func_and_file finished\n",
-                              "Result: 1.0\n", "\n"]
+        assert last_lines == [
+            "Function func_and_file started\n",
+            "Function func_and_file finished\n",
+            "Result: 1.0\n",
+            "\n",
+        ]
 
 
 def test_log_print(capsys):
@@ -31,13 +35,19 @@ def test_log_file_error(filename="logs.txt"):
     func_and_file(2, 0)
     with open(filename, "r", encoding="utf-8") as file:
         last_lines = file.readlines()[-5:]
-        assert last_lines == ["Function func_and_file started\n", "Function func_and_file finished by error:\n",
-                              "<class 'ZeroDivisionError'>: division by zero\n",
-                              "Parameters - args: (2, 0), kwargs: {}\n", "\n"]
+        assert last_lines == [
+            "Function func_and_file started\n",
+            "Function func_and_file finished by error:\n",
+            "<class 'ZeroDivisionError'>: division by zero\n",
+            "Parameters - args: (2, 0), kwargs: {}\n",
+            "\n",
+        ]
 
 
 def test_log_error_2(capsys):
     func_no_file(2, 0)
     captured = capsys.readouterr()
-    assert captured.out == ("Function func_no_file started\nFunction func_no_file finished by error:\n"
-                            "<class 'ZeroDivisionError'>: division by zero\nParameters - args: (2, 0), kwargs: {}\n\n")
+    assert captured.out == (
+        "Function func_no_file started\nFunction func_no_file finished by error:\n"
+        "<class 'ZeroDivisionError'>: division by zero\nParameters - args: (2, 0), kwargs: {}\n\n"
+    )
