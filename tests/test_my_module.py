@@ -1,5 +1,6 @@
-from src import my_module
 from pytest import fixture
+
+from src import my_module
 
 
 @fixture()
@@ -110,3 +111,22 @@ def test_get_search_2(transactions):
 def test_get_search_3(transactions):
     result = my_module.get_search(transactions, "шгпшгавп6487646848мшзгфпзп")
     assert result == []
+
+
+def test_get_count_transactions_1(transactions):
+    result = my_module.get_count_transactions(transactions,
+                                              ["перевод организации", "перевод с карты на карту"])
+    assert result == {'Перевод организации': 2, 'Перевод с карты на карту': 1}
+
+
+def test_get_count_transactions_2(transactions):
+    result = my_module.get_count_transactions(transactions,
+                                              ["перевод организации", "перевод со счета на счет",
+                                               "перевод с карты на карту"])
+    assert result == {'Перевод организации': 2, 'Перевод со счета на счет': 1, 'Перевод с карты на карту': 1}
+
+
+def test_get_count_transactions_3(transactions):
+    result = my_module.get_count_transactions(transactions,
+                                              ["открытие ВКЛАДА"])
+    assert result == {'Открытие вклада': 1}
