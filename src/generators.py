@@ -3,7 +3,7 @@ def filter_by_currency(transactions, code: str):
     Принимает на вход список словарей, представляющих транзакции, и код валюты для фильтрации, возвращает итератор,
     который поочередно выдает транзакции, где валюта операции соответствует заданной (например, USD).
     """
-    filter_transactions = (t for t in transactions if t["operationAmount"]["currency"]["code"] == code)
+    filter_transactions = (t for t in transactions if t.get("operationAmount").get("currency").get("code") == code)
     return filter_transactions
 
 

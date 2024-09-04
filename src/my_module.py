@@ -8,9 +8,11 @@ def get_search(transactions, search_str: str) -> list[dict]:
     Возвращает список словарей, в которых есть данная строка
     """
     transactions_by_search = []
+
     for transaction in transactions:
-        if re.search(search_str, str(transaction), flags=re.IGNORECASE):
-            transactions_by_search.append(transaction)
+        if type(transaction) is not None:
+            if re.search(search_str, str(transaction), flags=re.IGNORECASE):
+                transactions_by_search.append(transaction)
     return transactions_by_search
 
 

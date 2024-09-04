@@ -1,7 +1,7 @@
 import os
 
 from config import DATA_PATH
-from src import generators, my_module, processing, read_transactions, utils
+from src import generators, my_module, processing, read_transactions, utils, widget
 
 file_json = os.path.join(DATA_PATH, "operations.json")
 file_csv = os.path.join(DATA_PATH, "transactions.csv")
@@ -29,6 +29,12 @@ def main():
         print("Для обработки выбран XLSX-файл.")
     else:
         print("Некорректный ввод")
+
+    clear_transactions = []
+    for transaction in transactions:
+        if type(transaction) is not None:
+            clear_transactions.append(transaction)
+    transactions = clear_transactions
 
     # Получаем от пользователя статус и перезаписываем отфильтрованный список словарей в переменную transactions
     while True:
@@ -68,9 +74,11 @@ def main():
             transactions_generator = generators.filter_by_currency(transactions, "RUB")
             break
         elif user_input.lower() == "нет":
-            transactions_generator = generators.transaction_descriptions(transactions)
+            transactions_generator = transactions
             break
 #
+    print(transactions_generator)
+
     while True:
         user_input = input("Отфильтровать список транзакций по определенному слову в описании? Да/Нет\n")
         if user_input.lower() == "да":
@@ -83,11 +91,24 @@ def main():
                 transactions.append(transaction)
             break
 
+    print(transactions)
+
     # Вывод списка транзакций
     print("Распечатываю итоговый список транзакций...")
     if len(transactions) != 0:
         print(f"Всего банковских операций в выборке: {len(transactions)}")
-        print(transactions)
+        for transaction in transactions:
+            date = widget.get_date(transaction.get("date"))
+            description = transaction.get("description")
+            card_to = widget.mask_account_card(transaction.get("to"))
+            amount = round(float(transaction.get("operationAmount").get("amount")))
+            name = transaction.get("operationAmount").get("currency").get("name")
+            if transaction.get("from") is not None:
+                card_from = widget.mask_account_card(transaction.get("from"))
+                print(f"{date} {description}\n{card_from} -> {card_to}\nСумма: {amount} {name}\n\n")
+            else:
+                print(f"{date} {description}\n{card_to}\nСумма: {amount} {name}\n\n")
+
     else:
         print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации.")
 

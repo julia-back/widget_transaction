@@ -1,6 +1,8 @@
+from src import masks
+
+
 def mask_account_card(kind_and_numbers: str) -> str:
     """Принимает строку с типом и номером карты или счета,возвращает её с замаскированным номером"""
-    from src import masks
     kind = ""
     numbers = ""
     for symbol in kind_and_numbers:
