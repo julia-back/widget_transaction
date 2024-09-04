@@ -3,6 +3,7 @@ from src import utils
 from src import read_transactions
 from config import DATA_PATH
 
+
 file_json = os.path.join(DATA_PATH, "operations.json")
 file_csv = os.path.join(DATA_PATH, "transactions.csv")
 file_excel = os.path.join(DATA_PATH, "transactions_excel.xlsx")
@@ -12,6 +13,7 @@ def main():
     """Функция взаимодействия с пользователем и выстраивания основной логики проекта"""
 
     # Получаем от пользователя файл и выводим транзакции в виде списка словарей в переменной total_transactions
+    total_transactions = ""
 
     user_input = input("""Привет! Добро пожаловать в программу работы с банковскими транзакциями. 
 Выберите необходимый пункт меню:
@@ -30,28 +32,26 @@ def main():
     else:
         print("Некорректный ввод")
 
-    print(total_transactions)
-
     # Получаем от пользователя статус для фильтрации транзакций в переменную status
 
-#     while True:
-#         user_input = input("""Введите статус, по которому необходимо выполнить фильтрацию.
-# Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING\n""")
-#         if user_input.upper() == "EXECUTED":
-#             pass
-#             print("Операции отфильтрованы по статусу EXECUTED")
-#             break
-#         elif user_input.upper() == "CANCELED":
-#             pass
-#             print("Операции отфильтрованы по статусу CANCELED")
-#             break
-#         elif user_input.upper() == "PENDING":
-#             pass
-#             print("Операции отфильтрованы по статусу PENDING")
-#             break
-#         else:
-#             print(f"Статус операции \"{user_input}\" недоступен.")
-#
+    while True:
+        user_input = input("""Введите статус, по которому необходимо выполнить фильтрацию.
+Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING\n""")
+        if user_input.upper() == "EXECUTED":
+            pass
+            print("Операции отфильтрованы по статусу EXECUTED")
+            break
+        elif user_input.upper() == "CANCELED":
+            pass
+            print("Операции отфильтрованы по статусу CANCELED")
+            break
+        elif user_input.upper() == "PENDING":
+            pass
+            print("Операции отфильтрованы по статусу PENDING")
+            break
+        else:
+            print(f"Статус операции \"{user_input}\" недоступен.")
+
 #     user_input = input("Отсортировать операции по дате? (Да/Нет)")
 #     pass
 #     user_input = input("Отсортировать по возрастанию или по убыванию? (по возрастанию/по убыванию)")
