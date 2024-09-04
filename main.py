@@ -2,6 +2,7 @@ import os
 from src import utils
 from src import read_transactions
 from config import DATA_PATH
+from src import processing
 
 
 file_json = os.path.join(DATA_PATH, "operations.json")
@@ -13,8 +14,7 @@ def main():
     """Функция взаимодействия с пользователем и выстраивания основной логики проекта"""
 
     # Получаем от пользователя файл и выводим транзакции в виде списка словарей в переменной total_transactions
-    total_transactions = ""
-
+    total_transactions = []
     user_input = input("""Привет! Добро пожаловать в программу работы с банковскими транзакциями. 
 Выберите необходимый пункт меню:
 1. Получить информацию о транзакциях из JSON-файла
@@ -32,32 +32,47 @@ def main():
     else:
         print("Некорректный ввод")
 
-    # Получаем от пользователя статус для фильтрации транзакций в переменную status
-
+    # Получаем от пользователя статус и записываем отфильтрованный список словарей в переменную filtered_transactions
     while True:
         user_input = input("""Введите статус, по которому необходимо выполнить фильтрацию.
 Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING\n""")
         if user_input.upper() == "EXECUTED":
-            pass
+            filtered_transactions = processing.filter_by_state(total_transactions)
             print("Операции отфильтрованы по статусу EXECUTED")
             break
         elif user_input.upper() == "CANCELED":
-            pass
+            filtered_transactions = processing.filter_by_state(total_transactions, state="CANCELED")
             print("Операции отфильтрованы по статусу CANCELED")
             break
         elif user_input.upper() == "PENDING":
-            pass
+            filtered_transactions = processing.filter_by_state(total_transactions, state="PENDING")
             print("Операции отфильтрованы по статусу PENDING")
             break
         else:
             print(f"Статус операции \"{user_input}\" недоступен.")
 
-#     user_input = input("Отсортировать операции по дате? (Да/Нет)")
-#     pass
-#     user_input = input("Отсортировать по возрастанию или по убыванию? (по возрастанию/по убыванию)")
-#     pass
-#     user_input = input("Выводить только рублевые тразакции? Да/Нет")
-#     pass
+    # Уточняем у пользователя дополнительные параметры сортировки, записываем переменную sorted_transactions
+    user_input = input("Отсортировать операции по дате? (Да/Нет)")
+    if user_input.lower() == "да":
+        user_input = input("Отсортировать по возрастанию или по убыванию? (по возрастанию/по убыванию)")
+        if user_input.lower() == "по убыванию":
+            sorted_transactions = processing.sort_by_date(filtered_transactions)
+        elif user_input.lower() == "по возрастанию":
+            sorted_transactions = processing.sort_by_date(filtered_transactions, reverse=False)
+        else:
+            print("Неверный ввод")
+    elif user_input.lower() == "нет":
+        sorted_transactions = filtered_transactions
+    else:
+        print("Неверный ввод")
+
+    user_input = input("Выводить только рублевые тразакции? Да/Нет")
+    if user_input.lower() == "да":
+        pass
+    elif user_input.lower() == "нет":
+        pass
+    else:
+        print("Неверный ввод")
 #     user_input = input("Отфильтровать список транзакций по определенному слову в описании? Да/Нет")
 #     pass
 #
