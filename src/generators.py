@@ -1,4 +1,4 @@
-def filter_by_currency(transactions: list, code: str):
+def filter_by_currency(transactions, code: str):
     """
     Принимает на вход список словарей, представляющих транзакции, и код валюты для фильтрации, возвращает итератор,
     который поочередно выдает транзакции, где валюта операции соответствует заданной (например, USD).
@@ -7,7 +7,7 @@ def filter_by_currency(transactions: list, code: str):
     return filter_transactions
 
 
-def transaction_descriptions(transactions: list) -> dict:
+def transaction_descriptions(transactions) -> dict:
     """Принимает список словарей с транзакциями и возвращает описание каждой операции по очереди"""
     for transaction in transactions:
         yield transaction["description"]

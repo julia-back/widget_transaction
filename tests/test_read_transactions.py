@@ -3,7 +3,7 @@ from unittest.mock import Mock
 
 import pandas as pd
 
-from main import DATA_PATH
+from config import DATA_PATH
 from src import read_transactions
 
 

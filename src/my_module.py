@@ -2,7 +2,7 @@ import collections
 import re
 
 
-def get_search(transactions: list[dict], search_str: str) -> list[dict]:
+def get_search(transactions, search_str: str) -> list[dict]:
     """
     Функция для поиска по транзакциям. Принимает список словарей с транзакциями и строку для поиска.
     Возвращает список словарей, в которых есть данная строка
