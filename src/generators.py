@@ -6,7 +6,8 @@ def filter_by_currency(transactions, code: str):
     if len(transactions[0]) > 7:
         filter_transactions = (t for t in transactions if t.get("currency_code") == code)
     else:
-        filter_transactions = (t for t in transactions if t.get("operationAmount").get("currency").get("code") == code)
+        filter_transactions = (t for t in transactions if t.get("operationAmount") is not None
+                               and t.get("operationAmount").get("currency").get("code") == code)
     return filter_transactions
 
 

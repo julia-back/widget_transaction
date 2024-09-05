@@ -11,8 +11,9 @@ def get_search(transactions, search_str: str) -> list[dict]:
 
     for transaction in transactions:
         if type(transaction) is not None:
-            if re.search(search_str, str(transaction), flags=re.IGNORECASE):
-                transactions_by_search.append(transaction)
+            if transaction.get("description") is not None:
+                if re.search(search_str, str(transaction.get("description")), flags=re.IGNORECASE):
+                    transactions_by_search.append(transaction)
     return transactions_by_search
 
 
@@ -30,4 +31,4 @@ def get_count_transactions(transactions: list[dict], user_categories: list) -> d
         for description in descriptions:
             if category.lower() == description.lower():
                 count_user_category.append(description)
-    return collections.Counter(count_user_category)
+    return dict(collections.Counter(count_user_category))
