@@ -25,12 +25,13 @@ def mask_account_card(kind_and_numbers: str) -> str:
         i += 1
         kind_clean = "".join(kind_list)
     # Выведем результат в зависимости от типа карты или счета
-    if kind_clean.lower() == "счет":
-        mask_account = masks.get_mask_account(int(numbers))
-        return kind_clean + " " + mask_account
-    else:
-        mask_card = masks.get_mask_card_number(int(numbers))
-        return kind_clean + " " + mask_card
+    if len(numbers) != 0:
+        if kind_clean.lower() == "счет":
+            mask_account = masks.get_mask_account(int(numbers))
+            return kind_clean + " " + mask_account
+        else:
+            mask_card = masks.get_mask_card_number(int(numbers))
+            return kind_clean + " " + mask_card
 
 
 def get_date(complication_data: str) -> str:

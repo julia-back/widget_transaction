@@ -32,7 +32,7 @@ def main():
 
     clear_transactions = []
     for transaction in transactions:
-        if type(transaction) is not None:
+        if len(transaction) != 0:
             clear_transactions.append(transaction)
     transactions = clear_transactions
 
@@ -76,8 +76,6 @@ def main():
         elif user_input.lower() == "нет":
             transactions_generator = transactions
             break
-#
-    print(transactions_generator)
 
     while True:
         user_input = input("Отфильтровать список транзакций по определенному слову в описании? Да/Нет\n")
@@ -91,8 +89,6 @@ def main():
                 transactions.append(transaction)
             break
 
-    print(transactions)
-
     # Вывод списка транзакций
     print("Распечатываю итоговый список транзакций...")
     if len(transactions) != 0:
@@ -101,10 +97,14 @@ def main():
             date = widget.get_date(transaction.get("date"))
             description = transaction.get("description")
             card_to = widget.mask_account_card(transaction.get("to"))
-            amount = round(float(transaction.get("operationAmount").get("amount")))
-            name = transaction.get("operationAmount").get("currency").get("name")
-            if transaction.get("from") is not None:
-                card_from = widget.mask_account_card(transaction.get("from"))
+            try:
+                amount = round(float(transaction.get("operationAmount").get("amount")))
+                name = transaction.get("operationAmount").get("currency").get("name")
+            except AttributeError:
+                amount = round(float(transaction.get("amount")))
+                name = transaction.get("currency_name")
+            if transaction.get("from") is not None and str(transaction.get("from")) != "nan":
+                card_from = widget.mask_account_card(str(transaction.get("from")))
                 print(f"{date} {description}\n{card_from} -> {card_to}\nСумма: {amount} {name}\n\n")
             else:
                 print(f"{date} {description}\n{card_to}\nСумма: {amount} {name}\n\n")
