@@ -2,7 +2,7 @@ import json
 import logging
 import os
 
-from main import PATH
+from config import PATH
 
 logging.basicConfig(filemode="w")
 logger = logging.getLogger("utils.py")

@@ -1,7 +1,7 @@
 import logging
 import os
 
-from main import PATH
+from config import PATH
 
 logging.basicConfig(filemode="w")
 logger = logging.getLogger("masks.py")
@@ -9,7 +9,7 @@ handler = logging.FileHandler(os.path.join(PATH, "logs", "logs_masks.log"))
 formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s - %(message)s")
 handler.setFormatter(formatter)
 logger.addHandler(handler)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.ERROR)
 
 
 def get_mask_card_number(card_num: str | int) -> str:

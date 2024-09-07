@@ -19,6 +19,6 @@ def get_conversion_to_rubles(transaction: dict[str, str | int | dict[str, str | 
         dotenv.load_dotenv()
         api_key = os.getenv("API_KEY")
         headers = {"apikey": api_key}
-        responce = requests.get(url, headers=headers).json()
-        amount = responce["result"]
+        response = requests.get(url, headers=headers).json()
+        amount = response["result"]
         return round(amount, 2)

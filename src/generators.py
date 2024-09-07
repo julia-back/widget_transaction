@@ -1,13 +1,17 @@
-def filter_by_currency(transactions: list, code: str):
+def filter_by_currency(transactions, code: str):
     """
     Принимает на вход список словарей, представляющих транзакции, и код валюты для фильтрации, возвращает итератор,
     который поочередно выдает транзакции, где валюта операции соответствует заданной (например, USD).
     """
-    filter_transactions = (t for t in transactions if t["operationAmount"]["currency"]["code"] == code)
+    if len(transactions[0]) > 7:
+        filter_transactions = (t for t in transactions if t.get("currency_code") == code)
+    else:
+        filter_transactions = (t for t in transactions if t.get("operationAmount") is not None
+                               and t.get("operationAmount").get("currency").get("code") == code)
     return filter_transactions
 
 
-def transaction_descriptions(transactions: list) -> dict:
+def transaction_descriptions(transactions) -> dict:
     """Принимает список словарей с транзакциями и возвращает описание каждой операции по очереди"""
     for transaction in transactions:
         yield transaction["description"]
